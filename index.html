@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Mobile Fix -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>For My Love ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Light Hearts */
+    .bg-hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .bg-hearts span {
+      position: absolute;
+      color: rgba(255, 0, 0, 0.3);
+      font-size: 20px;
+      animation: floatUp 10s linear infinite;
+    }
+
+    /* 🔥 Dark Red Hearts (NEW) */
+    .dark-hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .dark-hearts span {
+      position: absolute;
+      color: rgba(139, 0, 0, 0.5);
+      font-size: 25px;
+      animation: floatUp 12s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh); opacity: 0; }
+      30% { opacity: 0.7; }
+      100% { transform: translateY(-10vh); opacity: 0; }
+    }
+
+    /* Card */
+    .card {
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 750px;
+      text-align: center;
+      color: #fff;
+    }
+
+    .heart {
+      font-size: 55px;
+      animation: beat 1s infinite;
+    }
+
+    .start-line {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .long-message {
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    /* Slider */
+    .slider {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 15px;
+      border: 3px solid white;
+    }
+
+    .slides {
+      display: flex;
+      width: 100%;
+      animation: slide 12s infinite;
+    }
+
+    .slides img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-200px); }
+      50% { transform: translateX(-400px); }
+      75% { transform: translateX(-600px); }
+      100% { transform: translateX(0); }
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px 25px;
+      border-radius: 25px;
+      border: none;
+      background: #fff;
+      color: #ff6b81;
+      cursor: pointer;
+    }
+
+    #message {
+      margin-top: 20px;
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: white;
+      color: #333;
+      padding: 30px;
+      border-radius: 15px;
+      z-index: 5;
+      transition: 0.4s;
+    }
+
+    .popup.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    @keyframes beat {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* 📱 Mobile Responsive */
+    @media (max-width: 600px) {
+      .card {
+        width: 90%;
+        padding: 20px;
+      }
+
+      .start-line {
+        font-size: 18px;
+      }
+
+      .long-message {
+        font-size: 15px;
+      }
+
+      .slider {
+        width: 150px;
+        height: 150px;
+      }
+
+      .slides img {
+        width: 150px;
+        height: 150px;
+      }
+
+      button {
+        padding: 15px 25px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Hearts -->
+<div class="bg-hearts" id="bgHearts"></div>
+<div class="dark-hearts" id="darkHearts"></div>
+
+<div class="card">
+  <div class="heart">❤️</div>
+  <h1>For You ❤️</h1>
+
+  <!-- Slider -->
+  <div class="slider">
+    <div class="slides">
+      <img src="1w.jpeg">
+      <img src="2w.jpeg">
+      <img src="3w.jpeg">
+      <img src="4w.jpeg">
+      <img src="5w.jpeg">
+      <img src="6w.jpeg">
+      <img src="7w.jpeg">
+      <img src="2w.jpeg">
+      <img src="4w.jpeg">
+      <img src="5w.jpeg">
+      <img src="1w.jpeg">
+      <img src="3w.jpeg">
+    </div>
+  </div>
+
+  <div class="start-line">My last love is for you 💔</div>
+
+  <p class="long-message">
+    I love you, and that will probably never change. But I think I need to let go…
+    <br><br>
+    Kaash aapne mujhe chuna hota… I would have stayed, always.
+    <br><br>
+    I’ll wait… maybe someday, we’ll find our way back. 💔
+  </p>
+
+  <button onclick="handleClick()">Click Me 💌</button>
+  <p id="message"></p>
+
+  <h2>Click anywhere to play music 🎶</h2>
+
+  <!-- Audio -->
+  <audio id="song" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    document.body.addEventListener("click", function () {
+      const audio = document.getElementById("song");
+      audio.play();
+    }, { once: true });
+  </script>
+
+</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+  <h2>Goodbye 💔</h2>
+  <p>You will always be my favorite memory ❤️</p>
+</div>
+
+<script>
+  // Light hearts
+  function createHeart() {
+    const heart = document.createElement("span");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    document.getElementById("bgHearts").appendChild(heart);
+    setTimeout(() => heart.remove(), 10000);
+  }
+  setInterval(createHeart, 800);
+
+  // 🔥 Dark hearts
+  function createDarkHeart() {
+    const heart = document.createElement("span");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random() * 20) + "px";
+    document.getElementById("darkHearts").appendChild(heart);
+    setTimeout(() => heart.remove(), 12000);
+  }
+  setInterval(createDarkHeart, 1200);
+
+  // Messages
+  let count = 0;
+  const msgs = [
+    "Be happy, Ayuu 💔🙂",
+    "Stay strong 😊",
+    "I’ll always wish the best 💭",
+    "Focus on your dreams 🚀",
+    "Goodbye meri jaan mere ayuu mera pyaar ❤️",
+    "mera bacha be strong apki bachi bhut pyaar karti apki",
+    "Me door se dekhu gi apko isliye kuch aisa mat karna jise me takhlif me jau"
+];
+
+  function handleClick() {
+    document.getElementById("song").play();
+
+    document.getElementById("message").innerHTML =
+      msgs[count % msgs.length];
+
+    count++;
+
+    if (count === msgs.length) {
+      setTimeout(() => {
+        document.getElementById("popup").classList.add("show");
+      }, 800);
+    }
+  }
+</script>
+
+</body>
+</html>
